@@ -55,8 +55,10 @@ class ChatViewModel(
         // Clear input field
         _uiState.update { it.copy(inputText = "") }
 
-        // Trigger response
-        autoReply()
+        // Trigger response if toggle on
+        if (_uiState.value.autoReplyEnabled) {
+            autoReply()
+        }
     }
 
     private fun autoReply() {
@@ -87,5 +89,10 @@ class ChatViewModel(
             repository.addMessage(reply)
         }
     }
+
+    fun setAutoReplyEnabled(enabled: Boolean) {
+        _uiState.update { it.copy(autoReplyEnabled = enabled) }
+    }
+
 
 }

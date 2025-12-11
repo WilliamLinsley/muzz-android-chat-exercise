@@ -15,6 +15,7 @@ import com.github.williamlinsley.muzzchat.ui.chat.components.MessageList
 import kotlinx.coroutines.launch
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.unit.dp
+import com.github.williamlinsley.muzzchat.ui.chat.components.AutoReplyToggle
 
 @Composable
 fun ChatScreen(
@@ -35,10 +36,16 @@ fun ChatScreen(
 
     Surface(modifier = Modifier.fillMaxSize()) {
         Column(modifier = Modifier.fillMaxSize()) {
+            // Toggle to turn off Replies
+            AutoReplyToggle(
+                isEnabled = uiState.autoReplyEnabled,
+                onToggle = viewModel::setAutoReplyEnabled
+            )
 
             // Message list takes all available space
             MessageList(
                 messages = uiState.messages,
+                listState = listState,
                 modifier = Modifier
                     .weight(1f)
                     .padding(horizontal = 4.dp),

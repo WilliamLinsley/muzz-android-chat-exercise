@@ -4,5 +4,6 @@ import com.github.williamlinsley.muzzchat.domain.model.Message
 
 data class ChatUiState(
     val messages: List<Message> = emptyList(),
-    val inputText: String = ""
+    val inputText: String = "",
+    val autoReplyEnabled: Boolean = true
 )
